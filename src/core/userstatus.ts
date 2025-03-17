@@ -23,6 +23,8 @@ export const userStatus = {
     elecShow: true,
     /** 合作UP */
     staff: false,
+    /** 显示搬运 */
+    copyright: false,
     /** bangumi */
     bangumi: true,
     /** 解除限制 */

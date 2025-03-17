@@ -170,6 +170,7 @@ export class PageAV extends Page {
                         });
                         Promise.resolve().then(() => {
                             user.userStatus!.staff && res.data.View.staff && this.staff(res.data.View.staff);
+                            user.userStatus!.copyright && res.data.View.copyright == 2 && this.notOriginal();
                         });
                         if (user.userStatus!.ugcSection && res.data.View.ugc_season) {
                             this.ugcSection(res.data.View.ugc_season, res.data.View.owner);
@@ -257,6 +258,16 @@ export class PageAV extends Page {
             addCss(cssUplist, "up-list");
             const box = node.querySelector<HTMLElement>('.up-card-box');
             box && new Scrollbar(box, true, false);
+        });
+    }
+
+    protected notOriginal() {
+        poll(() => document.querySelector<HTMLHeadingElement>(".video-info-m h1"), node => {
+            const a = document.createElement('a');
+            a.target = '_blank';
+            a.className = 'activity';
+            a.textContent = '搬运视频';
+            node.insertBefore(a, node.firstChild);
         });
     }
 
